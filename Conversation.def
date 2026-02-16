@@ -1,0 +1,5 @@
+int conversationId;
+String conversationName;
+String conversationType; // one on one or group chat
+Date createdAt;
+int creatorId;

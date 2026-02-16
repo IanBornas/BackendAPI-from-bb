@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabriel.userms.SplashViewController">
+<children>
+<ImageView fx:id="imgHug" fitHeight="408.0" fitWidth="437.0" layoutX="109.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-18.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="10.0">
+<image>
+<Image url="@../../../images/hug.gif" />
+</image>
+</ImageView>
+<Button layoutX="196.0" layoutY="379.0" mnemonicParsing="false" onAction="#onClicked" text="Next &gt;&gt;" />
+</children>
+</AnchorPane>

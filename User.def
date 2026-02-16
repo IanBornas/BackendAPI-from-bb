@@ -1,0 +1,9 @@
+int userId;
+String username;
+String displayName;
+String email;
+String avatarUrl;
+boolean online;
+Date lastSeen;
+String statusMessage;
+String deviceToken; // for notifs

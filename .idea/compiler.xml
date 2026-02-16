@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sbconvms" />
+        <module name="sbcallms" />
+        <module name="sbmessms" />
+        <module name="userms" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sbcallms" options="-parameters" />
+      <module name="sbconvms" options="-parameters" />
+      <module name="sbmessms" options="-parameters" />
+      <module name="userms" options="-parameters" />
+    </option>
+  </component>
+</project>

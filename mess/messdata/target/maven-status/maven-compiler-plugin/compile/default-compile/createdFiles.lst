@@ -1,0 +1,3 @@
+com\gabriel\messms\entity\MessageData.class
+com\gabriel\messms\service\ReplyToMessageService.class
+com\gabriel\messms\model\ReplyToMessage.class

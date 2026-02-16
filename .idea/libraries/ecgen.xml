@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ecgen">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ecgen.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

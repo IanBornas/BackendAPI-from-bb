@@ -1,0 +1,6 @@
+int callId;
+int callerId;
+int receiverId;
+String callType; // video or audio
+String signalStatus; // calling, ongoing etc
+Date timestamp;

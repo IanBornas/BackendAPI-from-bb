@@ -1,0 +1,10 @@
+int messageId;
+int conversationId;
+int senderId;
+String content;
+String messageType; // if text, img, emoji etc etc
+Date sentAt;
+Date deliveredAt;
+Date readAt;
+String mediaUrl;
+int replyToMessageId;
