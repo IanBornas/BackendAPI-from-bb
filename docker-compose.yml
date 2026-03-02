@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: backend-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: My81ack80r&
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-pMy81ack80r&"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  sbuserms:
+    build:
+      context: ./user
+      dockerfile: sbuserms/Dockerfile
+    container_name: sbuserms
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/userdb?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: My81ack80r&
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  sbconvms:
+    build:
+      context: ./conv
+      dockerfile: sbconvms/Dockerfile
+    container_name: sbconvms
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/convdb?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: My81ack80r&
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  sbmessms:
+    build:
+      context: ./mess
+      dockerfile: sbmessms/Dockerfile
+    container_name: sbmessms
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/messdb?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: My81ack80r&
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql-data:

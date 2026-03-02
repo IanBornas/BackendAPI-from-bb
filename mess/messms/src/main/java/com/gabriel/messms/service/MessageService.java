@@ -16,7 +16,7 @@ import java.util.List;
 public class MessageService {
 	Logger logger = LoggerFactory.getLogger(MessageService.class);
 	@Value("${service.api.endpoint}")
-	private String endpointUrl = "http://localhost:8080/api/message";
+	private String endpointUrl = "http://localhost:8082/api/message";
 
 	protected static MessageService service= null;
 	public static MessageService getService(){

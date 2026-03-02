@@ -16,7 +16,7 @@ import java.util.List;
 public class SenderService {
 	Logger logger = LoggerFactory.getLogger(SenderService.class);
 	@Value("${service.api.endpoint}")
-	private String endpointUrl = "http://localhost:8080/api/sender";
+	private String endpointUrl = "http://localhost:8082/api/sender";
 
 	protected static SenderService service= null;
 	public static SenderService getService(){

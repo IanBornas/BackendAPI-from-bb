@@ -16,7 +16,7 @@ import java.util.List;
 public class ReplyToMessageService {
 	Logger logger = LoggerFactory.getLogger(ReplyToMessageService.class);
 	@Value("${service.api.endpoint}")
-	private String endpointUrl = "http://localhost:8080/api/replyToMessage";
+	private String endpointUrl = "http://localhost:8082/api/replyToMessage";
 
 	protected static ReplyToMessageService service= null;
 	public static ReplyToMessageService getService(){

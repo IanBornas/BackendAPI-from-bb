@@ -16,7 +16,7 @@ import java.util.List;
 public class CreatorService {
 	Logger logger = LoggerFactory.getLogger(CreatorService.class);
 	@Value("${service.api.endpoint}")
-	private String endpointUrl = "http://localhost:8080/api/creator";
+	private String endpointUrl = "http://localhost:8081/api/creator";
 
 	protected static CreatorService service= null;
 	public static CreatorService getService(){
