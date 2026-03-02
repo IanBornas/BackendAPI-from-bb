@@ -1,7 +1,6 @@
 package com.gabriel.convms;
 import com.gabriel.convms.model.Conversation;
 import com.gabriel.convms.service.ConversationService;
-import com.gabriel.convms.GenericConversationController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lombok.Data;
 import lombok.Setter;
 
 public class ManageConversationController extends GenericConversationController{

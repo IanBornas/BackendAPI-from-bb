@@ -16,8 +16,4 @@ public class User{
 	private String deviceToken;
 	private Date lastUpdated;
 	private Date created;
-	@Override
-	public String toString(){
-		return name;
-	}
 }

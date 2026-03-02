@@ -1,20 +1,10 @@
 package com.gabriel.userms;
 import com.gabriel.userms.model.User;
 import com.gabriel.userms.service.UserService;
-import com.gabriel.userms.model.User;
-import com.gabriel.userms.service.UserService;
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Window;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.stage.Window;
-import java.net.URL;
-import java.util.ResourceBundle;
-import lombok.Setter;
 
 public class DeleteUserController extends GenericUserController {
 	public ImageView imgUser;

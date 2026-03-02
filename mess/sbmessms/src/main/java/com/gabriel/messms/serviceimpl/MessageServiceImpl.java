@@ -77,14 +77,11 @@ public class MessageServiceImpl implements MessageService {
 	}
 	@Override
 	public void delete(Integer id) {
-		Message message = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<MessageData> optional = messageDataRepository.findById(id);
 		if( optional.isPresent()) {
-			MessageData messageDatum = optional.get();
 			messageDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted Message record with id: " + Integer.toString(id));
-			message = tansformMessageService.transform(optional.get());
 		}
 		else {
 			logger.error(" Unable to locate message with id:" +  Integer.toString(id));

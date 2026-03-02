@@ -13,7 +13,7 @@ public class TransformUserServiceImpl implements TransformUserService {
 		userData.setDisplayName(user.getDisplayName());
 		userData.setEmail(user.getEmail());
 		userData.setAvatarUrl(user.getAvatarUrl());
-		userData.setOnline(user.getOnline());
+		userData.setOnline(user.isOnline());
 		userData.setLastSeen(user.getLastSeen());
 		userData.setStatusMessage(user.getStatusMessage());
 		userData.setDeviceToken(user.getDeviceToken());
@@ -29,7 +29,7 @@ public class TransformUserServiceImpl implements TransformUserService {
 		user.setDisplayName(userData.getDisplayName());
 		user.setEmail(userData.getEmail());
 		user.setAvatarUrl(userData.getAvatarUrl());
-		user.setOnline(userData.getOnline());
+		user.setOnline(userData.isOnline());
 		user.setLastSeen(userData.getLastSeen());
 		user.setStatusMessage(userData.getStatusMessage());
 		user.setDeviceToken(userData.getDeviceToken());

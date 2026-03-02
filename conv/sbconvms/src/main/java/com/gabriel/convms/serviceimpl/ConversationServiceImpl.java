@@ -77,14 +77,11 @@ public class ConversationServiceImpl implements ConversationService {
 	}
 	@Override
 	public void delete(Integer id) {
-		Conversation conversation = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<ConversationData> optional = conversationDataRepository.findById(id);
 		if( optional.isPresent()) {
-			ConversationData conversationDatum = optional.get();
 			conversationDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted Conversation record with id: " + Integer.toString(id));
-			conversation = tansformConversationService.transform(optional.get());
 		}
 		else {
 			logger.error(" Unable to locate conversation with id:" +  Integer.toString(id));

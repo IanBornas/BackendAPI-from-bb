@@ -12,8 +12,4 @@ public class Conversation{
 	private int creatorId;
 	private Date lastUpdated;
 	private Date created;
-	@Override
-	public String toString(){
-		return name;
-	}
 }

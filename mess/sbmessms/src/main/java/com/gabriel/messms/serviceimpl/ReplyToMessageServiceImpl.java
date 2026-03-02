@@ -90,18 +90,11 @@ public class ReplyToMessageServiceImpl implements ReplyToMessageService {
 	}
 	@Override
 	public void delete(Integer id) {
-		ReplyToMessage replyToMessage = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<ReplyToMessageData> optional = replyToMessageDataRepository.findById(id);
 		if( optional.isPresent()) {
-			ReplyToMessageData replyToMessageDatum = optional.get();
 			replyToMessageDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted ReplyToMessage record with id: " + Integer.toString(id));
-			replyToMessage = new ReplyToMessage();
-			replyToMessage.setId(optional.get().getId());
-			replyToMessage.setName(optional.get().getName());
-			replyToMessage.setCreated(optional.get().getCreated());
-			replyToMessage.setLastUpdated(optional.get().getLastUpdated());
 		}
 		else {
 			logger.error(" Unable to locate replyToMessage with id:" +  Integer.toString(id));

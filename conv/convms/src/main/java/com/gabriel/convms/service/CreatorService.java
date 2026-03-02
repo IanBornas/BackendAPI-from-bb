@@ -43,7 +43,7 @@ public class CreatorService {
 		String url = endpointUrl + "/" + Integer.toString(id);
 		logger.info("get: "  + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<Creator> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, Creator.class);
 		return response.getBody();
@@ -53,7 +53,7 @@ public class CreatorService {
 		String url = endpointUrl;
 		logger.info("getCreators: " + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<Creator[]> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, Creator[].class);
 		Creator[] creators = response.getBody();
@@ -83,7 +83,6 @@ public class CreatorService {
 		String url = endpointUrl + " / " + Integer.toString(id);
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<Creator> request = new HttpEntity<>(null, headers);
-		final ResponseEntity<Creator> response =
 		getRestTemplate().exchange(url, HttpMethod.DELETE, request, Creator.class);
 	}
 }

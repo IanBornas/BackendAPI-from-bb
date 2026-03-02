@@ -43,7 +43,7 @@ public class ConversationService {
 		String url = endpointUrl + "/" + Integer.toString(id);
 		logger.info("get: "  + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<Conversation> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, Conversation.class);
 		return response.getBody();
@@ -53,10 +53,10 @@ public class ConversationService {
 		String url = endpointUrl;
 		logger.info("getConversations: " + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
-		final ResponseEntity<Conversation[]> response =
-		getRestTemplate().exchange(url, HttpMethod.GET, request, Conversation[].class);
-		Conversation[] conversations = response.getBody();
+		HttpEntity<?> request2 = new HttpEntity<>(null, headers);
+		final ResponseEntity<Conversation[]> response2 =
+		getRestTemplate().exchange(url, HttpMethod.GET, request2, Conversation[].class);
+		Conversation[] conversations = response2.getBody();
 		return conversations;
 	}
 
@@ -82,8 +82,7 @@ public class ConversationService {
 		logger.info("delete: " + Integer.toString(id));
 		String url = endpointUrl + " / " + Integer.toString(id);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity<Conversation> request = new HttpEntity<>(null, headers);
-		final ResponseEntity<Conversation> response =
-		getRestTemplate().exchange(url, HttpMethod.DELETE, request, Conversation.class);
+		HttpEntity<?> deleteRequest = new HttpEntity<>(null, headers);
+		getRestTemplate().exchange(url, HttpMethod.DELETE, deleteRequest, Conversation.class);
 	}
 }

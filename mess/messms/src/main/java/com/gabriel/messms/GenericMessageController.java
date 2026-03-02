@@ -1,6 +1,5 @@
 package com.gabriel.messms;
 import com.gabriel.messms.model.Message;
-import com.gabriel.messms.model.Message;
 import com.gabriel.messms.service.MessageService;
 import com.gabriel.messms.model.Conversation;
 import com.gabriel.messms.service.ConversationService;
@@ -19,16 +18,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.Window;
 import lombok.Setter;
 import javafx.util.StringConverter;
 import java.net.URL;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
-import java.util.Locale;
 
 public class GenericMessageController implements Initializable{
 	@Setter
@@ -68,6 +63,10 @@ public class GenericMessageController implements Initializable{
 	public DatePicker dtReadAt;
 	public TextField txtMediaUrl;
 	public ComboBox<ReplyToMessage> cmbReplyToMessage;
+	public TextField txtMessageName;
+	public TextField txtConversationName;
+	public TextField txtSenderName;
+	public TextField txtReplyToMessageName;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,7 +84,7 @@ public class GenericMessageController implements Initializable{
 			public Message fromString(String s) {
 				if(!s.isEmpty()){
 					for (Message message : messages) {
-						if (s.equals(message.getName())){
+						if (s.equals(message.getContent())){
 							return message;
 						}
 					}
@@ -174,15 +173,18 @@ public class GenericMessageController implements Initializable{
 			if(isEdit) {
 				message.setId(Integer.parseInt(txtId.getText()));
 			}
-			Message message = cmbMessage.getSelectionModel().getSelectedItem();
-			message.setMessageId(message.getId());
-			message.setMessageName(message.getName());
+			Message selectedMessage = cmbMessage.getSelectionModel().getSelectedItem();
+			if (selectedMessage != null) {
+				message.setMessageId(selectedMessage.getMessageId());
+			}
 			Conversation conversation = cmbConversation.getSelectionModel().getSelectedItem();
-			message.setConversationId(conversation.getId());
-			message.setConversationName(conversation.getName());
+			if (conversation != null) {
+				message.setConversationId(conversation.getId());
+			}
 			Sender sender = cmbSender.getSelectionModel().getSelectedItem();
-			message.setSenderId(sender.getId());
-			message.setSenderName(sender.getName());
+			if (sender != null) {
+				message.setSenderId(sender.getId());
+			}
 			message.setContent(txtContent.getText());
 			message.setMessageType(txtMessageType.getText());
 			message.setSentAt(toDate(dtSentAt.getValue()));
@@ -190,31 +192,30 @@ public class GenericMessageController implements Initializable{
 			message.setReadAt(toDate(dtReadAt.getValue()));
 			message.setMediaUrl(txtMediaUrl.getText());
 			ReplyToMessage replyToMessage = cmbReplyToMessage.getSelectionModel().getSelectedItem();
-			message.setReplyToMessageId(replyToMessage.getId());
-			message.setReplyToMessageName(replyToMessage.getName());
+			if (replyToMessage != null) {
+				message.setReplyToMessageId(replyToMessage.getId());
+			}
 		}catch (Exception e){
 			showErrorDialog("Error" ,e.getMessage());
 		}
 		return message;
 	}
 	protected void setFields(String action){
-		String formattedDate;
 		Message message = GenericMessageController.selectedItem;
-		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH);
 		txtId.setText(Integer.toString(message.getId()));
-		Message message = MessageService.getService().get(message.getMessageId());
-		cmbMessage.getSelectionModel().select(message);
+		Message fetchedMessage = MessageService.getService().get(message.getMessageId());
+		cmbMessage.getSelectionModel().select(fetchedMessage);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbMessage.setVisible(true);
 			txtMessageName.setVisible(false);
-			cmbMessage.getSelectionModel().select(message);
+			cmbMessage.getSelectionModel().select(fetchedMessage);
 		}
 		else{
 			cmbMessage.setVisible(false);
 			txtMessageName.setVisible(true);
-			txtMessageName.setText(message.getName());
+			txtMessageName.setText(fetchedMessage.getContent());
 		}
-		Conversation conversation = ConversationService.getService().get(message.getConversationId());
+		Conversation conversation = ConversationService.getService().get(fetchedMessage.getConversationId());
 		cmbConversation.getSelectionModel().select(conversation);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbConversation.setVisible(true);
@@ -226,7 +227,7 @@ public class GenericMessageController implements Initializable{
 			txtConversationName.setVisible(true);
 			txtConversationName.setText(conversation.getName());
 		}
-		Sender sender = SenderService.getService().get(message.getSenderId());
+		Sender sender = SenderService.getService().get(fetchedMessage.getSenderId());
 		cmbSender.getSelectionModel().select(sender);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbSender.setVisible(true);
@@ -238,13 +239,13 @@ public class GenericMessageController implements Initializable{
 			txtSenderName.setVisible(true);
 			txtSenderName.setText(sender.getName());
 		}
-		txtContent.setText(message.getContent());
-		txtMessageType.setText(message.getMessageType());
-		dtSentAt.setValue(toLocalDate(message.getSentAt()));
-		dtDeliveredAt.setValue(toLocalDate(message.getDeliveredAt()));
-		dtReadAt.setValue(toLocalDate(message.getReadAt()));
-		txtMediaUrl.setText(message.getMediaUrl());
-		ReplyToMessage replyToMessage = ReplyToMessageService.getService().get(message.getReplyToMessageId());
+		txtContent.setText(fetchedMessage.getContent());
+		txtMessageType.setText(fetchedMessage.getMessageType());
+		dtSentAt.setValue(toLocalDate(fetchedMessage.getSentAt()));
+		dtDeliveredAt.setValue(toLocalDate(fetchedMessage.getDeliveredAt()));
+		dtReadAt.setValue(toLocalDate(fetchedMessage.getReadAt()));
+		txtMediaUrl.setText(fetchedMessage.getMediaUrl());
+		ReplyToMessage replyToMessage = ReplyToMessageService.getService().get(fetchedMessage.getReplyToMessageId());
 		cmbReplyToMessage.getSelectionModel().select(replyToMessage);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbReplyToMessage.setVisible(true);

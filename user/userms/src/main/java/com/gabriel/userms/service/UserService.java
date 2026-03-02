@@ -43,7 +43,7 @@ public class UserService {
 		String url = endpointUrl + "/" + Integer.toString(id);
 		logger.info("get: "  + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<User> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, User.class);
 		return response.getBody();
@@ -53,7 +53,7 @@ public class UserService {
 		String url = endpointUrl;
 		logger.info("getUsers: " + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<User[]> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, User[].class);
 		User[] users = response.getBody();
@@ -83,7 +83,6 @@ public class UserService {
 		String url = endpointUrl + " / " + Integer.toString(id);
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<User> request = new HttpEntity<>(null, headers);
-		final ResponseEntity<User> response =
 		getRestTemplate().exchange(url, HttpMethod.DELETE, request, User.class);
 	}
 }

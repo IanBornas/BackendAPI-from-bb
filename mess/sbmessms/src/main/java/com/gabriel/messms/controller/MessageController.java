@@ -4,7 +4,6 @@ import com.gabriel.messms.service.MessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,10 @@ public class MessageController {
 	@GetMapping("/api/message")
 	public ResponseEntity<?> listMessage()
 {
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Message[] message = messageService.getAll();
-			response =  ResponseEntity.ok().headers(headers).body(message);
+			response = ResponseEntity.ok(message);
 		}
 		catch( Exception ex)
 		{
@@ -31,7 +29,6 @@ public class MessageController {
 	@PutMapping("api/message")
 	public ResponseEntity<?> add(@RequestBody Message message){
 		logger.info("Input >> " + message.toString() );
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Message newMessage = messageService.create(message);
@@ -48,11 +45,10 @@ public class MessageController {
 	@PostMapping("api/message")
 	public ResponseEntity<?> update(@RequestBody Message message){
 		logger.info("Update Input >> message.toString() ");
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Message newMessage = messageService.update(message);
-			response = ResponseEntity.ok(message);
+			response = ResponseEntity.ok(newMessage);
 		}
 		catch( Exception ex)
 		{
@@ -65,7 +61,6 @@ public class MessageController {
 	@GetMapping("api/message/{id}")
 	public ResponseEntity<?> get(@PathVariable final Integer id){
 		logger.info("Input message id >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Message message = messageService.get(id);
@@ -80,7 +75,6 @@ public class MessageController {
 	@DeleteMapping("api/message/{id}")
 	public ResponseEntity<?> delete(@PathVariable final Integer id){
 		logger.info("Input >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			messageService.delete(id);

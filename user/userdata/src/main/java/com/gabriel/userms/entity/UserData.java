@@ -13,7 +13,15 @@ public class UserData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String name;
+	private int userId;
+	private String username;
+	private String displayName;
+	private String email;
+	private String avatarUrl;
+	private boolean online;
+	private Date lastSeen;
+	private String statusMessage;
+	private String deviceToken;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)

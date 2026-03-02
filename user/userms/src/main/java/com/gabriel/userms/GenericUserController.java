@@ -1,6 +1,5 @@
 package com.gabriel.userms;
 import com.gabriel.userms.model.User;
-import com.gabriel.userms.model.User;
 import com.gabriel.userms.service.UserService;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -13,16 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.Window;
 import lombok.Setter;
 import javafx.util.StringConverter;
 import java.net.URL;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
-import java.util.Locale;
 
 public class GenericUserController implements Initializable{
 	@Setter
@@ -54,6 +49,7 @@ public class GenericUserController implements Initializable{
 	public TextField txtId;
 	public ComboBox<User> cmbUser;
 	public TextField txtUsername;
+	public TextField txtUserName;
 	public TextField txtDisplayName;
 	public TextField txtEmail;
 	public TextField txtAvatarUrl;
@@ -78,7 +74,7 @@ public class GenericUserController implements Initializable{
 			public User fromString(String s) {
 				if(!s.isEmpty()){
 					for (User user : users) {
-						if (s.equals(user.getName())){
+						if (s.equals(user.getUsername())){
 							return user;
 						}
 					}
@@ -98,13 +94,14 @@ public class GenericUserController implements Initializable{
 			if(isEdit) {
 				user.setId(Integer.parseInt(txtId.getText()));
 			}
-			User user = cmbUser.getSelectionModel().getSelectedItem();
-			user.setUserId(user.getId());
-			user.setUserName(user.getName());
+			User selectedUser = cmbUser.getSelectionModel().getSelectedItem();
+			if (selectedUser != null) {
+				user.setUserId(selectedUser.getUserId());
+			}
 			user.setUsername(txtUsername.getText());
 			user.setEmail(txtEmail.getText());
 			user.setAvatarUrl(txtAvatarUrl.getText());
-			user.setOnline(txtOnline.getText());
+			user.setOnline(Boolean.parseBoolean(txtOnline.getText()));
 			user.setLastSeen(toDate(dtLastSeen.getValue()));
 			user.setStatusMessage(txtStatusMessage.getText());
 			user.setDeviceToken(txtDeviceToken.getText());
@@ -114,30 +111,28 @@ public class GenericUserController implements Initializable{
 		return user;
 	}
 	protected void setFields(String action){
-		String formattedDate;
 		User user = GenericUserController.selectedItem;
-		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH);
 		txtId.setText(Integer.toString(user.getId()));
-		User user = UserService.getService().get(user.getUserId());
-		cmbUser.getSelectionModel().select(user);
+		User fetchedUser = UserService.getService().get(user.getUserId());
+		cmbUser.getSelectionModel().select(fetchedUser);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbUser.setVisible(true);
 			txtUserName.setVisible(false);
-			cmbUser.getSelectionModel().select(user);
+			cmbUser.getSelectionModel().select(fetchedUser);
 		}
 		else{
 			cmbUser.setVisible(false);
 			txtUserName.setVisible(true);
-			txtUserName.setText(user.getName());
+			txtUserName.setText(fetchedUser.getUsername());
 		}
-		txtUsername.setText(user.getUsername());
-		txtDisplayName.setText(user.getDisplayName());
-		txtEmail.setText(user.getEmail());
-		txtAvatarUrl.setText(user.getAvatarUrl());
-		txtOnline.setText(user.getOnline());
-		dtLastSeen.setValue(toLocalDate(user.getLastSeen()));
-		txtStatusMessage.setText(user.getStatusMessage());
-		txtDeviceToken.setText(user.getDeviceToken());
+		txtUsername.setText(fetchedUser.getUsername());
+		txtDisplayName.setText(fetchedUser.getDisplayName());
+		txtEmail.setText(fetchedUser.getEmail());
+		txtAvatarUrl.setText(fetchedUser.getAvatarUrl());
+		txtOnline.setText(Boolean.toString(fetchedUser.isOnline()));
+		dtLastSeen.setValue(toLocalDate(fetchedUser.getLastSeen()));
+		txtStatusMessage.setText(fetchedUser.getStatusMessage());
+		txtDeviceToken.setText(fetchedUser.getDeviceToken());
 	}
 
 	protected void clearFields(String action){

@@ -43,7 +43,7 @@ public class MessageService {
 		String url = endpointUrl + "/" + Integer.toString(id);
 		logger.info("get: "  + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<Message> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, Message.class);
 		return response.getBody();
@@ -53,7 +53,7 @@ public class MessageService {
 		String url = endpointUrl;
 		logger.info("getMessages: " + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<Message[]> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, Message[].class);
 		Message[] messages = response.getBody();
@@ -83,7 +83,6 @@ public class MessageService {
 		String url = endpointUrl + " / " + Integer.toString(id);
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<Message> request = new HttpEntity<>(null, headers);
-		final ResponseEntity<Message> response =
 		getRestTemplate().exchange(url, HttpMethod.DELETE, request, Message.class);
 	}
 }

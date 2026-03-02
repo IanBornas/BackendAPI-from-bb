@@ -90,18 +90,11 @@ public class CreatorServiceImpl implements CreatorService {
 	}
 	@Override
 	public void delete(Integer id) {
-		Creator creator = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<CreatorData> optional = creatorDataRepository.findById(id);
 		if( optional.isPresent()) {
-			CreatorData creatorDatum = optional.get();
 			creatorDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted Creator record with id: " + Integer.toString(id));
-			creator = new Creator();
-			creator.setId(optional.get().getId());
-			creator.setName(optional.get().getName());
-			creator.setCreated(optional.get().getCreated());
-			creator.setLastUpdated(optional.get().getLastUpdated());
 		}
 		else {
 			logger.error(" Unable to locate creator with id:" +  Integer.toString(id));

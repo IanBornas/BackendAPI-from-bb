@@ -90,18 +90,11 @@ public class SenderServiceImpl implements SenderService {
 	}
 	@Override
 	public void delete(Integer id) {
-		Sender sender = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<SenderData> optional = senderDataRepository.findById(id);
 		if( optional.isPresent()) {
-			SenderData senderDatum = optional.get();
 			senderDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted Sender record with id: " + Integer.toString(id));
-			sender = new Sender();
-			sender.setId(optional.get().getId());
-			sender.setName(optional.get().getName());
-			sender.setCreated(optional.get().getCreated());
-			sender.setLastUpdated(optional.get().getLastUpdated());
 		}
 		else {
 			logger.error(" Unable to locate sender with id:" +  Integer.toString(id));

@@ -1,7 +1,6 @@
 package com.gabriel.userms;
 import com.gabriel.userms.model.User;
 import com.gabriel.userms.service.UserService;
-import com.gabriel.userms.GenericUserController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import lombok.Data;
 import lombok.Setter;
 
 public class ManageUserController extends GenericUserController{

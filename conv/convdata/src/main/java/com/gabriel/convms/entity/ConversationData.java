@@ -13,7 +13,11 @@ public class ConversationData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String name;
+	private int conversationId;
+	private String conversationName;
+	private String conversationType;
+	private Date createdAt;
+	private int creatorId;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)

@@ -1,6 +1,5 @@
 package com.gabriel.convms;
 import com.gabriel.convms.model.Conversation;
-import com.gabriel.convms.model.Conversation;
 import com.gabriel.convms.service.ConversationService;
 import com.gabriel.convms.model.Creator;
 import com.gabriel.convms.service.CreatorService;
@@ -15,16 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.stage.Window;
 import lombok.Setter;
 import javafx.util.StringConverter;
 import java.net.URL;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
-import java.util.Locale;
 
 public class GenericConversationController implements Initializable{
 	@Setter
@@ -58,6 +53,7 @@ public class GenericConversationController implements Initializable{
 	public TextField txtConversationName;
 	public TextField txtConversationType;
 	public DatePicker dtCreatedAt;
+	public TextField txtCreatorName;
 	public ComboBox<Creator> cmbCreator;
 
 	@Override
@@ -76,7 +72,7 @@ public class GenericConversationController implements Initializable{
 			public Conversation fromString(String s) {
 				if(!s.isEmpty()){
 					for (Conversation conversation : conversations) {
-						if (s.equals(conversation.getName())){
+						if (s.equals(conversation.getConversationName())){
 							return conversation;
 						}
 					}
@@ -119,40 +115,41 @@ public class GenericConversationController implements Initializable{
 			if(isEdit) {
 				conversation.setId(Integer.parseInt(txtId.getText()));
 			}
-			Conversation conversation = cmbConversation.getSelectionModel().getSelectedItem();
-			conversation.setConversationId(conversation.getId());
-			conversation.setConversationName(conversation.getName());
+			Conversation selectedConversation = cmbConversation.getSelectionModel().getSelectedItem();
+			if (selectedConversation != null) {
+				conversation.setConversationId(selectedConversation.getConversationId());
+			}
+			conversation.setConversationName(txtConversationName.getText());
 			conversation.setConversationType(txtConversationType.getText());
 			conversation.setCreatedAt(toDate(dtCreatedAt.getValue()));
 			Creator creator = cmbCreator.getSelectionModel().getSelectedItem();
-			conversation.setCreatorId(creator.getId());
-			conversation.setCreatorName(creator.getName());
+			if (creator != null) {
+				conversation.setCreatorId(creator.getId());
+			}
 		}catch (Exception e){
 			showErrorDialog("Error" ,e.getMessage());
 		}
 		return conversation;
 	}
 	protected void setFields(String action){
-		String formattedDate;
 		Conversation conversation = GenericConversationController.selectedItem;
-		SimpleDateFormat formatter = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH);
 		txtId.setText(Integer.toString(conversation.getId()));
-		Conversation conversation = ConversationService.getService().get(conversation.getConversationId());
-		cmbConversation.getSelectionModel().select(conversation);
+		Conversation fetchedConversation = ConversationService.getService().get(conversation.getConversationId());
+		cmbConversation.getSelectionModel().select(fetchedConversation);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbConversation.setVisible(true);
 			txtConversationName.setVisible(false);
-			cmbConversation.getSelectionModel().select(conversation);
+			cmbConversation.getSelectionModel().select(fetchedConversation);
 		}
 		else{
 			cmbConversation.setVisible(false);
 			txtConversationName.setVisible(true);
-			txtConversationName.setText(conversation.getName());
+			txtConversationName.setText(fetchedConversation.getConversationName());
 		}
-		txtConversationName.setText(conversation.getConversationName());
-		txtConversationType.setText(conversation.getConversationType());
-		dtCreatedAt.setValue(toLocalDate(conversation.getCreatedAt()));
-		Creator creator = CreatorService.getService().get(conversation.getCreatorId());
+		txtConversationName.setText(fetchedConversation.getConversationName());
+		txtConversationType.setText(fetchedConversation.getConversationType());
+		dtCreatedAt.setValue(toLocalDate(fetchedConversation.getCreatedAt()));
+		Creator creator = CreatorService.getService().get(fetchedConversation.getCreatorId());
 		cmbCreator.getSelectionModel().select(creator);
 		if(action.equals("Create") || action.equals("Edit")){
 			cmbCreator.setVisible(true);

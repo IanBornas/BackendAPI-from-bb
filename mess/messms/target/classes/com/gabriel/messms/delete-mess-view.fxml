@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="800.0" prefWidth="300.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gabriel.messms.DeleteMessageController">
+	<padding>
+		<Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+	</padding>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+	<Label alignment="CENTER" prefWidth="80.0" text="Id">
+	<padding>
+	<Insets left="10.0" />
+	</padding>
+	</Label>
+	<TextField fx:id="txtId" editable="false" prefWidth="200.0" >
+	<HBox.margin>
+	<Insets />
+	</HBox.margin>
+	</TextField>
+	<padding>
+	<Insets top="10.0" />
+	</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="Message">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<StackPane prefHeight="150.0" prefWidth="200.0">
+			<children>
+				<ComboBox fx:id="cmbMessage" prefWidth="200.0" />
+				<TextField fx:id="txtMessageName" editable="false" prefWidth="150.0"/>
+			</children>
+		</StackPane>
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="Conversation">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<StackPane prefHeight="150.0" prefWidth="200.0">
+			<children>
+				<ComboBox fx:id="cmbConversation" prefWidth="200.0" />
+				<TextField fx:id="txtConversationName" editable="false" prefWidth="150.0"/>
+			</children>
+		</StackPane>
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="Sender">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<StackPane prefHeight="150.0" prefWidth="200.0">
+			<children>
+				<ComboBox fx:id="cmbSender" prefWidth="200.0" />
+				<TextField fx:id="txtSenderName" editable="false" prefWidth="150.0"/>
+			</children>
+		</StackPane>
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="Content">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<TextField fx:id="txtContent" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="MessageType">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<TextField fx:id="txtMessageType" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="SentAt">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<DatePicker fx:id="dtSentAt" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="DeliveredAt">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<DatePicker fx:id="dtDeliveredAt" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="ReadAt">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<DatePicker fx:id="dtReadAt" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="MediaUrl">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<TextField fx:id="txtMediaUrl" editable="false" prefWidth="200.0" />
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox prefHeight="30.0" prefWidth="200.0">
+		<Label alignment="CENTER" prefWidth="80.0" text="ReplyToMessage">
+			<padding>
+				<Insets left="10.0" />
+			</padding>
+		</Label>
+		<StackPane prefHeight="150.0" prefWidth="200.0">
+			<children>
+				<ComboBox fx:id="cmbReplyToMessage" prefWidth="200.0" />
+				<TextField fx:id="txtReplyToMessageName" editable="false" prefWidth="150.0"/>
+			</children>
+		</StackPane>
+		<padding>
+			<Insets top="10.0" />
+		</padding>
+	</HBox>
+	<HBox layoutX="30.0" layoutY="297.0" prefHeight="30.0" prefWidth="200.0" spacing="19.0">
+		<children>
+			<Button fx:id="btnBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onBack" text="&lt;&lt; Back" />
+			<Button fx:id="btnUpdate" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSubmit" text="Submit" />
+			<Button fx:id="btnClose" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClose" text="Close" />
+		</children>
+	</HBox>
+</VBox>

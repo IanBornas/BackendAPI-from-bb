@@ -4,7 +4,6 @@ import com.gabriel.messms.service.SenderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,10 @@ public class SenderController {
 	@GetMapping("/api/sender")
 	public ResponseEntity<?> listSender()
 {
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Sender[] sender = senderService.getAll();
-			response =  ResponseEntity.ok().headers(headers).body(sender);
+			response = ResponseEntity.ok(sender);
 		}
 		catch( Exception ex)
 		{
@@ -31,7 +29,6 @@ public class SenderController {
 	@PutMapping("api/sender")
 	public ResponseEntity<?> add(@RequestBody Sender sender){
 		logger.info("Input >> " + sender.toString() );
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Sender newSender = senderService.create(sender);
@@ -48,11 +45,10 @@ public class SenderController {
 	@PostMapping("api/sender")
 	public ResponseEntity<?> update(@RequestBody Sender sender){
 		logger.info("Update Input >> sender.toString() ");
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Sender newSender = senderService.update(sender);
-			response = ResponseEntity.ok(sender);
+			response = ResponseEntity.ok(newSender);
 		}
 		catch( Exception ex)
 		{
@@ -65,7 +61,6 @@ public class SenderController {
 	@GetMapping("api/sender/{id}")
 	public ResponseEntity<?> get(@PathVariable final Integer id){
 		logger.info("Input sender id >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Sender sender = senderService.get(id);
@@ -80,7 +75,6 @@ public class SenderController {
 	@DeleteMapping("api/sender/{id}")
 	public ResponseEntity<?> delete(@PathVariable final Integer id){
 		logger.info("Input >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			senderService.delete(id);

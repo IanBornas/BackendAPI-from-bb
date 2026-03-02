@@ -1,26 +1,10 @@
 package com.gabriel.messms;
 import com.gabriel.messms.model.Message;
 import com.gabriel.messms.service.MessageService;
-import com.gabriel.messms.model.Message;
-import com.gabriel.messms.service.MessageService;
-import com.gabriel.messms.model.Conversation;
-import com.gabriel.messms.service.ConversationService;
-import com.gabriel.messms.model.Sender;
-import com.gabriel.messms.service.SenderService;
-import com.gabriel.messms.model.ReplyToMessage;
-import com.gabriel.messms.service.ReplyToMessageService;
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.stage.Window;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.stage.Window;
-import java.net.URL;
-import java.util.ResourceBundle;
-import lombok.Setter;
 
 public class EditMessageController extends GenericMessageController {
 	public ImageView imgMessage;
@@ -32,7 +16,7 @@ public class EditMessageController extends GenericMessageController {
 	public void onSubmit(ActionEvent actionEvent) {
 		try {
 			Message message = toObject(true);
-			Message newMessage = MessageService.getService().update(message);
+			MessageService.getService().update(message);
 			Node node = ((Node) (actionEvent.getSource()));
 			Window window = node.getScene().getWindow();
 			window.hide();

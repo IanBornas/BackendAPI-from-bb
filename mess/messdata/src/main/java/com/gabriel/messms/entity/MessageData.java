@@ -13,7 +13,16 @@ public class MessageData {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String name;
+	private int messageId;
+	private int conversationId;
+	private int senderId;
+	private String content;
+	private String messageType;
+	private Date sentAt;
+	private Date deliveredAt;
+	private Date readAt;
+	private String mediaUrl;
+	private int replyToMessageId;
 
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)

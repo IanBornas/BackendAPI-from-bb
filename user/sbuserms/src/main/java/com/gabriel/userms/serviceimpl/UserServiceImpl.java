@@ -77,14 +77,11 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public void delete(Integer id) {
-		User user = null;
 		logger.info(" Input >> " +  Integer.toString(id));
 		Optional<UserData> optional = userDataRepository.findById(id);
 		if( optional.isPresent()) {
-			UserData userDatum = optional.get();
 			userDataRepository.delete(optional.get());
 			logger.info(" Successfully deleted User record with id: " + Integer.toString(id));
-			user = tansformUserService.transform(optional.get());
 		}
 		else {
 			logger.error(" Unable to locate user with id:" +  Integer.toString(id));

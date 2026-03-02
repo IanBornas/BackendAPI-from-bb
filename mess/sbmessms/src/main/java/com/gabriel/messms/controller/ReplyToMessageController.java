@@ -4,7 +4,6 @@ import com.gabriel.messms.service.ReplyToMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,10 @@ public class ReplyToMessageController {
 	@GetMapping("/api/replyToMessage")
 	public ResponseEntity<?> listReplyToMessage()
 {
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			ReplyToMessage[] replyToMessage = replyToMessageService.getAll();
-			response =  ResponseEntity.ok().headers(headers).body(replyToMessage);
+			response = ResponseEntity.ok(replyToMessage);
 		}
 		catch( Exception ex)
 		{
@@ -31,7 +29,6 @@ public class ReplyToMessageController {
 	@PutMapping("api/replyToMessage")
 	public ResponseEntity<?> add(@RequestBody ReplyToMessage replyToMessage){
 		logger.info("Input >> " + replyToMessage.toString() );
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			ReplyToMessage newReplyToMessage = replyToMessageService.create(replyToMessage);
@@ -48,11 +45,10 @@ public class ReplyToMessageController {
 	@PostMapping("api/replyToMessage")
 	public ResponseEntity<?> update(@RequestBody ReplyToMessage replyToMessage){
 		logger.info("Update Input >> replyToMessage.toString() ");
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			ReplyToMessage newReplyToMessage = replyToMessageService.update(replyToMessage);
-			response = ResponseEntity.ok(replyToMessage);
+			response = ResponseEntity.ok(newReplyToMessage);
 		}
 		catch( Exception ex)
 		{
@@ -65,7 +61,6 @@ public class ReplyToMessageController {
 	@GetMapping("api/replyToMessage/{id}")
 	public ResponseEntity<?> get(@PathVariable final Integer id){
 		logger.info("Input replyToMessage id >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			ReplyToMessage replyToMessage = replyToMessageService.get(id);
@@ -80,7 +75,6 @@ public class ReplyToMessageController {
 	@DeleteMapping("api/replyToMessage/{id}")
 	public ResponseEntity<?> delete(@PathVariable final Integer id){
 		logger.info("Input >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			replyToMessageService.delete(id);

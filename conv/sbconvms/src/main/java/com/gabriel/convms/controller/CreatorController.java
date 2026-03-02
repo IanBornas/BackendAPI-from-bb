@@ -4,7 +4,6 @@ import com.gabriel.convms.service.CreatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,10 @@ public class CreatorController {
 	@GetMapping("/api/creator")
 	public ResponseEntity<?> listCreator()
 {
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Creator[] creator = creatorService.getAll();
-			response =  ResponseEntity.ok().headers(headers).body(creator);
+			response = ResponseEntity.ok(creator);
 		}
 		catch( Exception ex)
 		{
@@ -31,7 +29,6 @@ public class CreatorController {
 	@PutMapping("api/creator")
 	public ResponseEntity<?> add(@RequestBody Creator creator){
 		logger.info("Input >> " + creator.toString() );
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Creator newCreator = creatorService.create(creator);
@@ -48,11 +45,10 @@ public class CreatorController {
 	@PostMapping("api/creator")
 	public ResponseEntity<?> update(@RequestBody Creator creator){
 		logger.info("Update Input >> creator.toString() ");
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Creator newCreator = creatorService.update(creator);
-			response = ResponseEntity.ok(creator);
+			response = ResponseEntity.ok(newCreator);
 		}
 		catch( Exception ex)
 		{
@@ -65,7 +61,6 @@ public class CreatorController {
 	@GetMapping("api/creator/{id}")
 	public ResponseEntity<?> get(@PathVariable final Integer id){
 		logger.info("Input creator id >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			Creator creator = creatorService.get(id);
@@ -80,7 +75,6 @@ public class CreatorController {
 	@DeleteMapping("api/creator/{id}")
 	public ResponseEntity<?> delete(@PathVariable final Integer id){
 		logger.info("Input >> " + Integer.toString(id));
-		HttpHeaders headers = new HttpHeaders();
 		ResponseEntity<?> response;
 		try {
 			creatorService.delete(id);

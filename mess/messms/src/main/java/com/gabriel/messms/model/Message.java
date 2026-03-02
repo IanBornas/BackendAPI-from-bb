@@ -17,8 +17,4 @@ public class Message{
 	private int replyToMessageId;
 	private Date lastUpdated;
 	private Date created;
-	@Override
-	public String toString(){
-		return name;
-	}
 }

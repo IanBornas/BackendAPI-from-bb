@@ -43,7 +43,7 @@ public class ReplyToMessageService {
 		String url = endpointUrl + "/" + Integer.toString(id);
 		logger.info("get: "  + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<ReplyToMessage> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, ReplyToMessage.class);
 		return response.getBody();
@@ -53,7 +53,7 @@ public class ReplyToMessageService {
 		String url = endpointUrl;
 		logger.info("getReplyToMessages: " + url);
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity request = new HttpEntity<>(null, headers);
+		HttpEntity<?> request = new HttpEntity<>(null, headers);
 		final ResponseEntity<ReplyToMessage[]> response =
 		getRestTemplate().exchange(url, HttpMethod.GET, request, ReplyToMessage[].class);
 		ReplyToMessage[] replyToMessages = response.getBody();
@@ -83,7 +83,6 @@ public class ReplyToMessageService {
 		String url = endpointUrl + " / " + Integer.toString(id);
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity<ReplyToMessage> request = new HttpEntity<>(null, headers);
-		final ResponseEntity<ReplyToMessage> response =
 		getRestTemplate().exchange(url, HttpMethod.DELETE, request, ReplyToMessage.class);
 	}
 }
