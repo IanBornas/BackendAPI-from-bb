@@ -1,0 +1,9 @@
+com\gabriel\messms\MessageMSApplication.class
+com\gabriel\messms\controller\MessageController.class
+com\gabriel\messms\serviceimpl\MessageServiceImpl.class
+com\gabriel\messms\serviceimpl\SenderServiceImpl.class
+com\gabriel\messms\controller\ReplyToMessageController.class
+com\gabriel\messms\serviceimpl\ReplyToMessageServiceImpl.class
+com\gabriel\messms\controller\SenderController.class
+com\gabriel\messms\serviceimpl\ConversationServiceImpl.class
+com\gabriel\messms\controller\ConversationController.class

@@ -1,0 +1,6 @@
+com\gabriel\userms\repository\UserDataRepository.class
+com\gabriel\userms\transform\TransformUserService.class
+com\gabriel\userms\service\UserService.class
+com\gabriel\userms\entity\UserData.class
+com\gabriel\userms\model\User.class
+com\gabriel\userms\transform\TransformUserServiceImpl.class

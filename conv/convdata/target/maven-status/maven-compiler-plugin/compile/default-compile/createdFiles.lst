@@ -1,0 +1,10 @@
+com\gabriel\convms\repository\ConversationDataRepository.class
+com\gabriel\convms\service\CreatorService.class
+com\gabriel\convms\entity\ConversationData.class
+com\gabriel\convms\entity\CreatorData.class
+com\gabriel\convms\transform\TransformConversationServiceImpl.class
+com\gabriel\convms\model\Conversation.class
+com\gabriel\convms\model\Creator.class
+com\gabriel\convms\repository\CreatorDataRepository.class
+com\gabriel\convms\service\ConversationService.class
+com\gabriel\convms\transform\TransformConversationService.class

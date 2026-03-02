@@ -1,0 +1,5 @@
+com\gabriel\convms\serviceimpl\ConversationServiceImpl.class
+com\gabriel\convms\serviceimpl\CreatorServiceImpl.class
+com\gabriel\convms\controller\ConversationController.class
+com\gabriel\convms\controller\CreatorController.class
+com\gabriel\convms\ConversationMSApplication.class
