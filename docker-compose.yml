@@ -8,8 +8,6 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: My81ack80r&
-    ports:
-      - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
       - ./docker/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -21,8 +19,8 @@ services:
 
   sbuserms:
     build:
-      context: ./user
-      dockerfile: sbuserms/Dockerfile
+      context: ./user/sbuserms
+      dockerfile: Dockerfile
     container_name: sbuserms
     restart: unless-stopped
     ports:
@@ -37,8 +35,8 @@ services:
 
   sbconvms:
     build:
-      context: ./conv
-      dockerfile: sbconvms/Dockerfile
+      context: ./conv/sbconvms
+      dockerfile: Dockerfile
     container_name: sbconvms
     restart: unless-stopped
     ports:
@@ -53,8 +51,8 @@ services:
 
   sbmessms:
     build:
-      context: ./mess
-      dockerfile: sbmessms/Dockerfile
+      context: ./mess/sbmessms
+      dockerfile: Dockerfile
     container_name: sbmessms
     restart: unless-stopped
     ports:

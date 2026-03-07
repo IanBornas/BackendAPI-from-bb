@@ -1,0 +1,11 @@
+com\gabriel\userms\SplashViewController.class
+com\gabriel\userms\DeleteUserController.class
+com\gabriel\userms\service\UserService.class
+com\gabriel\userms\ManageUserApplication.class
+com\gabriel\userms\EditUserController.class
+com\gabriel\userms\GenericUserController$1.class
+com\gabriel\userms\GenericUserController.class
+com\gabriel\userms\model\User.class
+com\gabriel\userms\ManageUserController.class
+com\gabriel\userms\CreateUserController.class
+com\gabriel\userms\ManageUserJFXApp.class

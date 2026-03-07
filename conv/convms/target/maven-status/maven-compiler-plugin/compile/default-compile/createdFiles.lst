@@ -1,0 +1,14 @@
+com\gabriel\convms\SplashViewController.class
+com\gabriel\convms\GenericConversationController$2.class
+com\gabriel\convms\GenericConversationController$1.class
+com\gabriel\convms\ManageConversationController.class
+com\gabriel\convms\CreateConversationController.class
+com\gabriel\convms\EditConversationController.class
+com\gabriel\convms\model\Conversation.class
+com\gabriel\convms\service\ConversationService.class
+com\gabriel\convms\GenericConversationController.class
+com\gabriel\convms\ManageConversationApplication.class
+com\gabriel\convms\ManageConversationJFXApp.class
+com\gabriel\convms\service\CreatorService.class
+com\gabriel\convms\DeleteConversationController.class
+com\gabriel\convms\model\Creator.class
