@@ -1,9 +1,13 @@
-C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\controller\SenderController.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\kafka\MessageCreatedEvent.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\serviceimpl\MessageServiceImpl.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\controller\MessageController.java
-C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\MessageMSApplication.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\kafka\KafkaTopicConfig.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\serviceimpl\ReplyToMessageServiceImpl.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\kafka\MessageEventProducer.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\serviceimpl\SenderServiceImpl.java
-C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\serviceimpl\ConversationServiceImpl.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\controller\ConversationController.java
 C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\controller\ReplyToMessageController.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\controller\SenderController.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\MessageMSApplication.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\kafka\MessageEventConsumer.java
+C:\Users\sekir\OneDrive\Desktop\New folder (21)\BackendAPI-from-bb\mess\sbmessms\src\main\java\com\gabriel\messms\serviceimpl\ConversationServiceImpl.java

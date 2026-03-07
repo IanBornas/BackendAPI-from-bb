@@ -1,5 +1,7 @@
 package com.gabriel.messms.serviceimpl;
 import com.gabriel.messms.entity.MessageData;
+import com.gabriel.messms.kafka.MessageCreatedEvent;
+import com.gabriel.messms.kafka.MessageEventProducer;
 import com.gabriel.messms.model.Message;
 import com.gabriel.messms.repository.MessageDataRepository;
 import com.gabriel.messms.service.MessageService;
@@ -16,6 +18,8 @@ public class MessageServiceImpl implements MessageService {
 	MessageDataRepository messageDataRepository;
 	@Autowired
 	TransformMessageService tansformMessageService;
+	@Autowired
+	MessageEventProducer messageEventProducer;
 	@Override
 	public Message[] getAll() {
 		List<MessageData> messagesData = new ArrayList<>();
@@ -40,6 +44,15 @@ public class MessageServiceImpl implements MessageService {
 		messageData = messageDataRepository.save(messageData);
 		logger.info(" add:Input " + messageData.toString());
 			Message newMessage = tansformMessageService.transform(messageData);
+		MessageCreatedEvent event = new MessageCreatedEvent(
+				newMessage.getMessageId(),
+				newMessage.getConversationId(),
+				newMessage.getSenderId(),
+				newMessage.getContent(),
+				newMessage.getMessageType(),
+				newMessage.getSentAt() != null ? newMessage.getSentAt().toString() : null
+		);
+		messageEventProducer.sendMessageCreatedEvent(event);
 		return newMessage;
 	}
 
