@@ -200,24 +200,24 @@ function Start-Docker {
         Write-Info "Still waiting... ($waited s elapsed)"
     }
 
-    # Health smoke test
+    # API smoke test
     Write-Step "Running smoke tests"
     $endpoints = @(
-        @{ Name = "sbuserms"; Url = "http://localhost:8080/actuator/health" },
-        @{ Name = "sbconvms"; Url = "http://localhost:8081/actuator/health" },
-        @{ Name = "sbmessms"; Url = "http://localhost:8082/actuator/health" }
+        @{ Name = "sbuserms"; Url = "http://localhost:8080/api/user" },
+        @{ Name = "sbconvms"; Url = "http://localhost:8081/api/conversation" },
+        @{ Name = "sbmessms"; Url = "http://localhost:8082/api/message" }
     )
 
     foreach ($ep in $endpoints) {
         try {
             $resp = Invoke-WebRequest -Uri $ep.Url -UseBasicParsing -TimeoutSec 10 -ErrorAction Stop
             if ($resp.StatusCode -eq 200) {
-                Write-OK "$($ep.Name) health endpoint responded 200"
+                Write-OK "$($ep.Name) endpoint responded 200"
             } else {
                 Write-Info "$($ep.Name) responded HTTP $($resp.StatusCode) (may still be starting)"
             }
         } catch {
-            Write-Info "$($ep.Name) health endpoint not reachable yet - service may not expose /actuator/health"
+            Write-Info "$($ep.Name) endpoint not reachable yet or returned non-200"
         }
     }
 
