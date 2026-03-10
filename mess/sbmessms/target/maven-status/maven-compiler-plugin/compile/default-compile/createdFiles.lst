@@ -9,5 +9,6 @@ com\gabriel\messms\controller\ConversationController.class
 com\gabriel\messms\controller\MessageController.class
 com\gabriel\messms\serviceimpl\SenderServiceImpl.class
 com\gabriel\messms\serviceimpl\ReplyToMessageServiceImpl.class
+com\gabriel\messms\config\WebSocketConfig.class
 com\gabriel\messms\kafka\MessageEventConsumer.class
 com\gabriel\messms\controller\SenderController.class
